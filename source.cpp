@@ -248,6 +248,8 @@ FSA FSA::concatenate(FSA first,FSA second) {
 FSA FSA::kleene(FSA other) {
     other.incrementStateIds(1);
     FSA machine = other;
+    if (other.finalStates.size() == 1 && other.initialState == other.finalStates[0])
+        return machine;
     machine.initialState = 0;
     machine.addEpsilonTransition(0, other.initialState);
     for (auto from: other.finalStates)
