@@ -142,9 +142,6 @@ FSA::FSA(std::string s) {
 
 void FSA::DFS(long state, char x, std::map<long, bool> used, long currentK) {
     used[state] = 1;
-    if (currentK >= 3) {
-        std::cout << 5;
-    }
     answer = std::max(answer, currentK);
     for (auto t: transitions) {
         long from = t.first.first;
@@ -265,9 +262,6 @@ long FSA::getAnswer() {
 
 void FSA::calculateMaximumK(char x) {
     answer = 0;
-    for (auto t: transitions) {
-        std::cout << t.first.first << " " << t.first.second << " " << t.second << std::endl;
-    }
     for (auto st: states)
         DFS(st, x, std::map<long, bool>(), 0);
 }
@@ -294,4 +288,3 @@ int main() {
         std::cout << answer << std::endl;
     return 0;
 }
-
